@@ -6,4 +6,4 @@ packages:
     version: 0.18.3
     ## Docs: https://docs.elementary-data.com
   
-  - local: ../dbt_col/dbt_package
+  # - local: ../dbt_col/dbt_package

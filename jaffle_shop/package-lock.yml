@@ -3,5 +3,4 @@ packages:
     version: 1.1.1
   - package: elementary-data/elementary
     version: 0.18.3
-  - local: ../dbt_col/dbt_package
-sha1_hash: 8dda899d61e6eef8457f1670a136a393a5f80c41
+sha1_hash: 605ecaea58761b3ec735a4f66b0c71ab5a8e44a4

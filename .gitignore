@@ -23,6 +23,7 @@ MANIFEST
 
 # Virtual environments
 venv/
+test/
 env/
 ENV/
 env.bak/
