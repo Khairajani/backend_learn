@@ -1,0 +1,54 @@
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'jaffle_shop'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'jaffle_shop'
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+# No hooks needed - dbt-col runs automatically!
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In this example config, we tell dbt to build all models in the example/
+# directory as views. These settings can be overridden in the individual model
+# files using the `{{ config(...) }}` macro.
+models:
+  jaffle_shop:
+    example:
+      +materialized: table
+
+  elementary:
+    +schema: elementary
+
+flags:
+  require_explicit_package_overrides_for_builtin_materializations: False
+  source_freshness_run_project_hooks: True
+
+vars:
+  # OpenMetadata configuration for dbt-col package
+  dbt_col_openmetadata_host_port: "http://localhost:8585/api"
+  dbt_col_openmetadata_jwt_token: "eyJraWQiOiJHYjM4OWEtOWY3Ni1nZGpzLWE5MmotMDI0MmJrOTQzNTYiLCJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJvcGVuLW1ldGFkYXRhLm9yZyIsInN1YiI6ImluZ2VzdGlvbi1ib3QiLCJyb2xlcyI6WyJJbmdlc3Rpb25Cb3RSb2xlIl0sImVtYWlsIjoiaW5nZXN0aW9uLWJvdEBvcGVuLW1ldGFkYXRhLm9yZyIsImlzQm90Ijp0cnVlLCJ0b2tlblR5cGUiOiJCT1QiLCJpYXQiOjE3NDg4NTEyMDUsImV4cCI6bnVsbH0.oSmOfaLn9MYAhKLNTrGKBqcXt5mDVBE2duki7gW0Kpg6WannDodxA4DLs3ABO41v9E0r1AcHx2WzVBxyT73BR8mG4VFSxbUJVmUVFcLdclp3L9A9j5EBswj_jMpRreeEiX8XsZLGqrBsIKIzzMOt-BacFrC_F-_my8T17qvLsuMSqBIkbnSb58kWS0T5xmrOwUYale9SSoEBlhrVT02FsMxZYYRPXR3kSQB7662wzVo8mE1-rlVxX0qrYQj5fPAfvtoDjV6WBgFciHNZZK2t-lcvzg7eYmVBbTuCRASse3IcI5UkTIj_HevlqauO2IJM9uzR8CnzZM3sk8cwo83UQw"
+  dbt_col_openmetadata_service_name: "hktest"
+
+quoting:
+  database: false
+  schema: false
+  identifier: false

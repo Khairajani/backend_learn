@@ -1,0 +1,5 @@
+CustomerID,Name,Email,Country,SignupDate,PurchaseAmount
+1001,Alice,alice@example.com,USA,2023-01-15,250.75
+1002,Bob,bob@example.com,Canada,2023-02-20,100.5
+1003,Charlie,charlie@example.com,USA,2023-03-18,330.4
+1004,Diana,diana@example.com,UK,2023-04-10,150.0
