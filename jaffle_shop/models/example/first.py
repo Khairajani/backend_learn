@@ -25,7 +25,7 @@ def model(dbt, session):
     logging.critical(log_messages)
     logging.exception(log_messages)
     
-    raise Exception(log_messages)
+    # raise Exception(log_messages)
     
     
     # Return the log messages for debugging instead of the dataframe
