@@ -5,11 +5,12 @@ dbt-col CLI: Automated dbt to OpenMetadata publisher
 
 import argparse
 import os
-import sys
-import yaml
 import subprocess
+import sys
 from pathlib import Path
 from typing import Dict, Optional
+
+import yaml
 
 from .core import DbtColIngestion
 
@@ -47,16 +48,16 @@ def auto_ingest_command(args):
         vars_config = dbt_config.get('vars', {})
         
         # Extract OpenMetadata configuration
-        jwt_token = vars_config.get('dbt_col_openmetadata_jwt_token')
-        host_port = vars_config.get('dbt_col_openmetadata_host_port')
-        service_name = vars_config.get('dbt_col_openmetadata_service_name', 'dbt')
+        jwt_token = vars_config.get('openmetadata_jwt_token')
+        host_port = vars_config.get('openmetadata_host_port')
+        service_name = vars_config.get('openmetadata_service_name', 'dbt')
         
         if not jwt_token or not host_port:
             print("❌ OpenMetadata configuration not found in dbt_project.yml")
             print("   Add the following to your vars:")
-            print("   dbt_col_openmetadata_jwt_token: 'your-jwt-token'")
-            print("   dbt_col_openmetadata_host_port: 'http://localhost:8585/api'")
-            print("   dbt_col_openmetadata_service_name: 'your-service-name'")
+            print("   openmetadata_jwt_token: 'your-jwt-token'")
+            print("   openmetadata_host_port: 'http://localhost:8585/api'")
+            print("   openmetadata_service_name: 'your-service-name'")
             sys.exit(1)
         
         # Find target directory

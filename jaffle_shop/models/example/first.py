@@ -1,7 +1,9 @@
 # write me a python script that will print "hello world" and use dbt python
 import logging
+
 import snowflake.snowpark.functions as F
 from snowflake.snowpark.functions import col, upper
+
 
 def model(dbt, session):
     dbt.config(
@@ -42,10 +44,11 @@ def test():
     
     """Handle the auto-ingest command logic"""
     import os
-    import yaml
     from pathlib import Path
     from typing import Dict, Optional
-    
+
+    import yaml
+
     # Snowflake-friendly logging function that collects messages
     def sf_log(message):
         log_messages.append(f"[DBT-COL] {message}")
@@ -237,9 +240,9 @@ def test():
         
         # Extract OpenMetadata configuration
         sf_log("Step 3: Extracting OpenMetadata configuration...")
-        jwt_token = vars_config.get('dbt_col_openmetadata_jwt_token')
-        host_port = vars_config.get('dbt_col_openmetadata_host_port')
-        service_name = vars_config.get('dbt_col_openmetadata_service_name', 'dbt')
+        jwt_token = vars_config.get('openmetadata_jwt_token')
+        host_port = vars_config.get('openmetadata_host_port')
+        service_name = vars_config.get('openmetadata_service_name', 'dbt')
         
         sf_log(f"JWT Token present: {'Yes' if jwt_token else 'No'}")
         sf_log(f"Host Port: {host_port if host_port else 'Not found'}")
@@ -248,9 +251,9 @@ def test():
         if not jwt_token or not host_port:
             sf_log("❌ OpenMetadata configuration not found in dbt_project.yml")
             sf_log("   Add the following to your vars:")
-            sf_log("   dbt_col_openmetadata_jwt_token: 'your-jwt-token'")
-            sf_log("   dbt_col_openmetadata_host_port: 'http://localhost:8585/api'")
-            sf_log("   dbt_col_openmetadata_service_name: 'your-service-name'")
+            sf_log("   openmetadata_jwt_token: 'your-jwt-token'")
+            sf_log("   openmetadata_host_port: 'http://localhost:8585/api'")
+            sf_log("   openmetadata_service_name: 'your-service-name'")
             return log_messages
         
         # Find target directory
