@@ -34,6 +34,8 @@ models:
   jaffle_shop:
     example:
       +materialized: table
+
+models:
   # elementary:
   #   +schema: elementary
 
@@ -43,9 +45,9 @@ flags:
 
 vars:
   # OpenMetadata configuration for metadata ingest-dbt command
-  openmetadata_host_port: "{{ env_var('OPENMETADATA_HOST_PORT', 'http://localhost:8585/api') }}"
-  openmetadata_jwt_token: "{{ env_var('OPENMETADATA_JWT_TOKEN') }}"
-  openmetadata_service_name: "{{ env_var('OPENMETADATA_SERVICE_NAME', 'hktest') }}"
+  openmetadata_host_port: "${OPENMETADATA_HOST_PORT}"
+  openmetadata_jwt_token: "${OPENMETADATA_JWT_TOKEN}" 
+  openmetadata_service_name: "${OPENMETADATA_SERVICE_NAME}"
 
 quoting:
   database: false
