@@ -1,6 +1,6 @@
 {{ config(
     materialized='table',
-    alias='dbt_output'
+    alias='dbt_output_upper'
 ) }}
 
 select *,
