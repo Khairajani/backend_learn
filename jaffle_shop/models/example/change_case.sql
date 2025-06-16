@@ -1,6 +1,6 @@
 {{ config(
     materialized='table',
-    alias='dbt_output_upper'
+    alias='dbt_output_upper_16_june'
 ) }}
 
 select *,
